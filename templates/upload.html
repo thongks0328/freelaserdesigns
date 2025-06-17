@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ t["upload"] }} - FreeLaserDesigns</title>
+</head>
+<body>
+<h1>{{ t["upload_title"] }}</h1>
+<form method="post" enctype="multipart/form-data">
+    <label>{{ t["label_title"] }}：<input type="text" name="title" required></label><br>
+    <label>{{ t["label_category"] }}：<input type="text" name="category" required></label><br>
+    <label>{{ t["label_file"] }}：<input type="file" name="file" required></label><br>
+    <label>{{ t["label_thumb"] }}：<input type="file" name="thumbnail" required></label><br>
+    <button type="submit">{{ t["upload"] }}</button>
+</form>
+<p><a href="/">{{ t["back"] }}</a></p>
+</body>
+</html>

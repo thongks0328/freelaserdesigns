@@ -1,0 +1,14 @@
+body {
+    background: url('/static/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+a {
+    color: #ffd700;
+}
+h1 {
+    text-shadow: 1px 1px 3px #000;
+}

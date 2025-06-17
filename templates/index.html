@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>FreeLaserDesigns</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .controls input, .controls select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        .design-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .design-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">FreeLaserDesigns</h1>
+
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="搜索文件...">
+        <select id="categorySelect">
+            <option value="全部">全部分类</option>
+            <option value="动物">动物</option>
+            <option value="盒子">盒子</option>
+            <option value="橱">橱</option>
+            <option value="拼图">拼图</option>
+        </select>
+    </div>
+
+    <div class="design-grid" id="designContainer">
+        {% for file in files %}
+        <div class="design-item" data-name="{{ file }}" data-category="{{ file.split('_')[0] }}">
+            <p>{{ file }}</p>
+            <a href="/download/{{ file }}" style="color: lightblue;">下载</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const categorySelect = document.getElementById("categorySelect");
+        const designItems = document.querySelectorAll(".design-item");
+
+        function filterDesigns() {
+            const keyword = searchInput.value.toLowerCase();
+            const category = categorySelect.value;
+            designItems.forEach(item => {
+                const name = item.getAttribute("data-name").toLowerCase();
+                const cat = item.getAttribute("data-category");
+                const matchKeyword = name.includes(keyword);
+                const matchCategory = category === "全部" || category === cat;
+                item.style.display = matchKeyword && matchCategory ? "block" : "none";
+            });
+        }
+
+        searchInput.addEventListener("input", filterDesigns);
+        categorySelect.addEventListener("change", filterDesigns);
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员控制台</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .admin-panel {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 15px;
+            max-width: 800px;
+        }
+        .admin-panel h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #aaa;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            color: white;
+        }
+        a.btn {
+            color: white;
+            background: red;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        a.btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-panel">
+        <h2>管理员控制台</h2>
+        <h3>文件列表</h3>
+        <table>
+            <tr><th>文件名</th><th>操作</th></tr>
+            {% for file in files %}
+            <tr>
+                <td>{{ file }}</td>
+                <td><a href="/delete/{{ file }}" class="btn">删除</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>用户列表</h3>
+        <table>
+            <tr><th>用户名</th></tr>
+            {% for user in users %}
+            <tr><td>{{ user }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
